@@ -9,11 +9,11 @@ declare module 'axios' {
 }
 
 const API: AxiosInstance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API}`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
 });
 
 const APIWithoutAuth: AxiosInstance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API}`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
 });
 
 // add token to header if currentUser is logged-in
@@ -45,6 +45,8 @@ const errorResponseHandler = (error: any) => {
 
   // if has response show the error
   if (error.response) {
+    console.log(error);
+    return;
     const status = error.response.status;
     if (status === 404) {
       return Router.push('/404');

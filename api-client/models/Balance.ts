@@ -10,9 +10,9 @@ export type Balance = {
   userId: number;
 };
 
-enum BalanceType {
-  INCOME,
-  EXPENSE,
+export enum BalanceType {
+  INCOME = 'INCOME',
+  EXPENSE = 'EXPENSE',
 }
 
 export type BalanceDto = {

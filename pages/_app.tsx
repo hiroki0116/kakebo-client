@@ -1,5 +1,4 @@
 import '@/styles/globals.css';
-import Layout from '@/components/widgets/Layout';
 import { MantineProvider } from '@mantine/core';
 import { Provider } from 'react-redux';
 import { store } from '@/stores/store';
@@ -16,9 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <Provider store={store}>
         <NavBar />
-        <Layout title="KaKeBo">
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
         <Footer />
       </Provider>
     </MantineProvider>

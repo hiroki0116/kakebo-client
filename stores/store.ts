@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import balanceReducer from './balance/balanceSlice';
+import balanceFormReducer from './balance/balanceFormSlice';
 
 export const store = configureStore({
   devTools: process.env.NEXT_PUBLIC_STAGE == 'dev',
   reducer: {
     balance: balanceReducer,
+    balanceForm: balanceFormReducer,
   },
 });
 

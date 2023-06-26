@@ -8,13 +8,11 @@ type Props = {
 
 const Layout: FC<Props> = ({ children, title = 'Nextjs' }) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex min-h-screen flex-col">
       <Head>
         <title>{title}</title>
       </Head>
-      <main className="flex w-screen flex-1 flex-col items-center justify-center">
-        {children}
-      </main>
+      <main className="grid grid-cols-1 justify-items-center">{children}</main>
     </div>
   );
 };

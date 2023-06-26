@@ -6,7 +6,7 @@ type BalanceRepositorty = {
   getBalanceById: (id: number) => Promise<Balance>;
   createBalance: (balance: BalanceDto) => Promise<Balance>;
   updateBalance: (balance: BalanceDto) => Promise<Balance>;
-  deleteBalance: (id: number) => Promise<Msg>;
+  deleteBalance: (id: number) => Promise<void>;
 };
 
 const getAllBalance = async (): Promise<Balance[]> => {
@@ -29,9 +29,8 @@ const updateBalance = async (balance: BalanceDto): Promise<Balance> => {
   return data;
 };
 
-const deleteBalance = async (id: number): Promise<Msg> => {
-  const { data } = await API.delete(`/balance/${id}`);
-  return data;
+const deleteBalance = async (id: number): Promise<void> => {
+  await API.delete(`/balance/${id}`);
 };
 
 export const balanceRepository: BalanceRepositorty = {
