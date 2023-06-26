@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Balance {
+  id          Int         @id @default(autoincrement())
+  amount      Int         @default(0)
+  title       String      @default("new item")
+  balnaceType BalanceType @default(INCOME)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime
+  userId      Int
+  User        User        @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  name        String    @default("new user")
+  payDay      Int       @default(25)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  firebaseUid String    @unique
+  Balance     Balance[]
+}
+
+enum BalanceType {
+  INCOME
+  EXPENSE
+}

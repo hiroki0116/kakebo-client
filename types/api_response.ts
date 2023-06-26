@@ -1,0 +1,3 @@
+interface Msg {
+  message: string;
+}
