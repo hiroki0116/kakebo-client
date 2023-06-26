@@ -23,6 +23,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { saveUserAndToken, setCookie } from '@/lib/authFunctions';
+import { APIWithoutAuth } from '@/api-client/api-client';
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('No email provided.'),
@@ -47,7 +48,7 @@ export default function Home() {
     setLoading(true);
     try {
       if (isRegistered) {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`, {
+        await APIWithoutAuth.post(`/auth/signup`, {
           email: form.values.email,
           password: form.values.password,
         });
@@ -81,7 +82,7 @@ export default function Home() {
     }
   };
   return (
-    <Layout title="Auth">
+    <div className="grid grid-cols-1 justify-items-center">
       <h1 className="font-bold">Ka Ke-Bo</h1>
       <ShieldCheckIcon className="h-16 w-16 text-blue-500" />
       {error && (
@@ -122,7 +123,7 @@ export default function Home() {
               setError('');
             }}
           >
-            {isRegistered ? 'Have an account? Login' : "Don't have an account"}
+            {isRegistered ? 'Have an account?' : "Don't have an account?"}
           </Anchor>
           <Button
             leftIcon={<IconDatabase size={14} />}
@@ -134,6 +135,6 @@ export default function Home() {
           </Button>
         </Group>
       </form>
-    </Layout>
+    </div>
   );
 }
